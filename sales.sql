@@ -81,10 +81,10 @@ CREATE TABLE time_frame (
 
 -- Insert data from "sales" table
 
-INSERT INTO time_frame (id_,average) SELECT 'Q1', SUM(time_0000_0600_revenue) FROM sales;
-INSERT INTO time_frame (id_,average) SELECT 'Q2', SUM(time_0601_1200_revenue) FROM sales;
-INSERT INTO time_frame (id_,average) SELECT 'Q3', SUM(time_1200_1800_revenue) FROM sales;
-INSERT INTO time_frame (id_,average) SELECT 'Q4', SUM(time_1801_2359_revenue) FROM sales;
+INSERT INTO time_frame (id_,sum_) SELECT 'Q1', SUM(time_0000_0600_revenue) FROM sales;
+INSERT INTO time_frame (id_,sum_) SELECT 'Q2', SUM(time_0601_1200_revenue) FROM sales;
+INSERT INTO time_frame (id_,sum_) SELECT 'Q3', SUM(time_1200_1800_revenue) FROM sales;
+INSERT INTO time_frame (id_,sum_) SELECT 'Q4', SUM(time_1801_2359_revenue) FROM sales;
 
 -- Now, we have another valuable data in this datasets. These are the total revenue and orders for weekday and weekend. We can see the consumer habit of the customers.
 -- Then, we can rearrange the campaing and special offers according to these results.
@@ -105,6 +105,24 @@ CREATE TABLE weekday_weekend_revenue (
 INSERT INTO weekday_weekend_revenue (day_zone,total_revenues) SELECT 'weekday', SUM(monday_revenue+tuesday_revenue+wednesday_revenue+tuesday_revenue+friday_revenue) FROM sales;
 INSERT INTO weekday_weekend_revenue (day_zone,total_revenues) SELECT 'weekend', SUM(saturday_revenue+sunday_revenue) FROM sales;
 
+-- Third one is the interesting data to analysis for this dataset. For this one, sum of the revenues are filtered by the time zone
+-- What does it mean time zone? Thats mean, the day is divided as four quarter part from 00:00-06:00/06:01-12:00/12:01-18:00/18:01-24:00
+-- This way, we can understand the most used time by the customers, and we can give some discounts or giveaway for the most used times to the customers.
+
+-- Creating table
+
+CREATE TABLE time_frame_2020 (
+    id_ varchar(50),
+    sum_ integer)
+
+-- Insert data from "sales" table
+
+INSERT INTO time_frame_2020 (id_,sum_) SELECT 'Q1', SUM(time_0000_0600_revenue) FROM sales WHERE EXTRACT(YEAR FROM first_order_date) = 2020;
+INSERT INTO time_frame_2020 (id_,sum_) SELECT 'Q2', SUM(time_0601_1200_revenue) FROM sales WHERE EXTRACT(YEAR FROM first_order_date) = 2020;
+INSERT INTO time_frame_2020 (id_,sum_) SELECT 'Q3', SUM(time_1200_1800_revenue) FROM sales WHERE EXTRACT(YEAR FROM first_order_date) = 2020;
+INSERT INTO time_frame_2020 (id_,sum_) SELECT 'Q4', SUM(time_1801_2359_revenue) FROM sales WHERE EXTRACT(YEAR FROM first_order_date) = 2020;
+
 -- Now, all tables are ready for the analysis. The other parameters and comparisons will be done helping with the main data on Tableau.
+
 
 -- Visualization of the data can be seen here: [Link will be added]
