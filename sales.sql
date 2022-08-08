@@ -65,7 +65,7 @@ LIMIT 10
 -- Second table is the "top_ten_revenue" thats mean, top ten customers who have the highest revenue are filtered from "sales" table. 
 
 CREATE TABLE top_ten_revenue AS
-SELECT customer_id, revenue FROM sales3
+SELECT customer_id, revenue FROM sales
 ORDER BY revenue DESC
 LIMIT 10
 
