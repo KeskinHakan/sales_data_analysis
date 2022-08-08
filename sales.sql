@@ -58,8 +58,8 @@ FROM sales
 -- First table is the "top_ten_order" thats mean, top ten customers who have the highest total orders are filtered from "sales" table. 
 
 CREATE TABLE top_ten_order AS
-SELECT customerid, totalorders FROM sales
-ORDER BY totalorders DESC
+SELECT customerid, total_orders FROM sales
+ORDER BY total_orders DESC
 LIMIT 10
 
 -- Second table is the "top_ten_revenue" thats mean, top ten customers who have the highest revenue are filtered from "sales" table. 
