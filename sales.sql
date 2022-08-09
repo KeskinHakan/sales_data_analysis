@@ -125,4 +125,4 @@ INSERT INTO time_frame_2020 (id_,sum_) SELECT 'Q4', SUM(time_1801_2359_revenue) 
 -- Now, all tables are ready for the analysis. The other parameters and comparisons will be done helping with the main data on Tableau.
 
 
--- Visualization of the data can be seen here: [Link will be added]
+-- Visualization of the data can be seen here: https://public.tableau.com/app/profile/hakan5535/viz/AnonymousSalesDataAnalysis/Dashboard1
